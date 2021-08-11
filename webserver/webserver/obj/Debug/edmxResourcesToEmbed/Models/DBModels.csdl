@@ -1,0 +1,213 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QL_CUAHANGDONGHOModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CHATLIEU">
+    <Key>
+      <PropertyRef Name="IDCHATLIEU" />
+    </Key>
+    <Property Name="IDDONGHO" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+    <Property Name="IDCHATLIEU" Type="String" MaxLength="30" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="SIZEKINH" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+    <Property Name="LOAIKINH" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="LOAIDAY" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="CHATLIEU1" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="MAUTOMATSO" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="MAUTOVO" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="MUCCHONGNUOC" Type="String" MaxLength="9" FixedLength="true" Unicode="false" />
+    <NavigationProperty Name="DONGHO" Relationship="Self.FK_CHATLIEU_DONGHO" FromRole="CHATLIEU" ToRole="DONGHO" />
+  </EntityType>
+  <EntityType Name="CHITIETHOADON">
+    <Key>
+      <PropertyRef Name="IDHOADON" />
+    </Key>
+    <Property Name="IDHOADON" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="IDDONGHO" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+    <Property Name="SOLUONG" Type="Int32" />
+    <Property Name="THANHTIEN" Type="Double" />
+    <Property Name="DONGIA" Type="Double" />
+    <NavigationProperty Name="DONGHO" Relationship="Self.FK_CHITIETHOADON_DONGHO" FromRole="CHITIETHOADON" ToRole="DONGHO" />
+    <NavigationProperty Name="HOADON" Relationship="Self.FK_CHITIETHOADON_HOADON" FromRole="CHITIETHOADON" ToRole="HOADON" />
+  </EntityType>
+  <EntityType Name="DONGHO">
+    <Key>
+      <PropertyRef Name="IDDONGHO" />
+    </Key>
+    <Property Name="IDDONGHO" Type="String" MaxLength="30" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="TENDONGHO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="GIABAN" Type="Double" />
+    <Property Name="XUATSU" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="GIOITINH" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="IDLOAI" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="IDTHUONGHIEU" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="HINH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="CHATLIEUx" Relationship="Self.FK_CHATLIEU_DONGHO" FromRole="DONGHO" ToRole="CHATLIEU" />
+    <NavigationProperty Name="CHITIETHOADONs" Relationship="Self.FK_CHITIETHOADON_DONGHO" FromRole="DONGHO" ToRole="CHITIETHOADON" />
+    <NavigationProperty Name="LOAIDONGHO" Relationship="Self.FK_DONGHO_LOAI" FromRole="DONGHO" ToRole="LOAIDONGHO" />
+    <NavigationProperty Name="THUONGHIEU" Relationship="Self.FK_DONGHO_THUONGHIEU" FromRole="DONGHO" ToRole="THUONGHIEU" />
+    <NavigationProperty Name="KHACHHANGs" Relationship="Self.DONGHOYEUTHICH" FromRole="DONGHO" ToRole="KHACHHANG" />
+  </EntityType>
+  <EntityType Name="HOADON">
+    <Key>
+      <PropertyRef Name="IDHOADON" />
+    </Key>
+    <Property Name="IDHOADON" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="NGAYLAP" Type="DateTime" Precision="0" />
+    <Property Name="TONGTIEN" Type="Double" />
+    <Property Name="IDKHACHHANG" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+    <NavigationProperty Name="CHITIETHOADON" Relationship="Self.FK_CHITIETHOADON_HOADON" FromRole="HOADON" ToRole="CHITIETHOADON" />
+    <NavigationProperty Name="KHACHHANG" Relationship="Self.FK_HOADON_KHACHHANG" FromRole="HOADON" ToRole="KHACHHANG" />
+  </EntityType>
+  <EntityType Name="KHACHHANG">
+    <Key>
+      <PropertyRef Name="EMAIL" />
+    </Key>
+    <Property Name="EMAIL" Type="String" MaxLength="30" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="PASS" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+    <Property Name="HOTEN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="GIOITINH" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="NAMSINH" Type="Int32" />
+    <Property Name="SDT" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+    <Property Name="NOISINH" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="HOADONs" Relationship="Self.FK_HOADON_KHACHHANG" FromRole="KHACHHANG" ToRole="HOADON" />
+    <NavigationProperty Name="DONGHOes" Relationship="Self.DONGHOYEUTHICH" FromRole="KHACHHANG" ToRole="DONGHO" />
+  </EntityType>
+  <EntityType Name="LOAIDONGHO">
+    <Key>
+      <PropertyRef Name="IDLOAI" />
+    </Key>
+    <Property Name="IDLOAI" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="TENLOAI" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="HINH" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="DONGHOes" Relationship="Self.FK_DONGHO_LOAI" FromRole="LOAIDONGHO" ToRole="DONGHO" />
+  </EntityType>
+  <EntityType Name="QUANTRI">
+    <Key>
+      <PropertyRef Name="EMAIL" />
+    </Key>
+    <Property Name="EMAIL" Type="String" MaxLength="30" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="PASS" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+    <Property Name="HOTEN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="THUONGHIEU">
+    <Key>
+      <PropertyRef Name="IDTHUONGHIEU" />
+    </Key>
+    <Property Name="IDTHUONGHIEU" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="TENTHUONGHIEU" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="HINH" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="DONGHOes" Relationship="Self.FK_DONGHO_THUONGHIEU" FromRole="THUONGHIEU" ToRole="DONGHO" />
+  </EntityType>
+  <Association Name="FK_CHATLIEU_DONGHO">
+    <End Role="DONGHO" Type="Self.DONGHO" Multiplicity="0..1" />
+    <End Role="CHATLIEU" Type="Self.CHATLIEU" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DONGHO">
+        <PropertyRef Name="IDDONGHO" />
+      </Principal>
+      <Dependent Role="CHATLIEU">
+        <PropertyRef Name="IDDONGHO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CHITIETHOADON_DONGHO">
+    <End Role="DONGHO" Type="Self.DONGHO" Multiplicity="0..1" />
+    <End Role="CHITIETHOADON" Type="Self.CHITIETHOADON" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DONGHO">
+        <PropertyRef Name="IDDONGHO" />
+      </Principal>
+      <Dependent Role="CHITIETHOADON">
+        <PropertyRef Name="IDDONGHO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CHITIETHOADON_HOADON">
+    <End Role="HOADON" Type="Self.HOADON" Multiplicity="1" />
+    <End Role="CHITIETHOADON" Type="Self.CHITIETHOADON" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="HOADON">
+        <PropertyRef Name="IDHOADON" />
+      </Principal>
+      <Dependent Role="CHITIETHOADON">
+        <PropertyRef Name="IDHOADON" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DONGHO_LOAI">
+    <End Role="LOAIDONGHO" Type="Self.LOAIDONGHO" Multiplicity="0..1" />
+    <End Role="DONGHO" Type="Self.DONGHO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LOAIDONGHO">
+        <PropertyRef Name="IDLOAI" />
+      </Principal>
+      <Dependent Role="DONGHO">
+        <PropertyRef Name="IDLOAI" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DONGHO_THUONGHIEU">
+    <End Role="THUONGHIEU" Type="Self.THUONGHIEU" Multiplicity="0..1" />
+    <End Role="DONGHO" Type="Self.DONGHO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="THUONGHIEU">
+        <PropertyRef Name="IDTHUONGHIEU" />
+      </Principal>
+      <Dependent Role="DONGHO">
+        <PropertyRef Name="IDTHUONGHIEU" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HOADON_KHACHHANG">
+    <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="0..1" />
+    <End Role="HOADON" Type="Self.HOADON" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KHACHHANG">
+        <PropertyRef Name="EMAIL" />
+      </Principal>
+      <Dependent Role="HOADON">
+        <PropertyRef Name="IDKHACHHANG" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DONGHOYEUTHICH">
+    <End Role="DONGHO" Type="Self.DONGHO" Multiplicity="*" />
+    <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="QL_CUAHANGDONGHOEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CHATLIEUx" EntityType="Self.CHATLIEU" />
+    <EntitySet Name="CHITIETHOADONs" EntityType="Self.CHITIETHOADON" />
+    <EntitySet Name="DONGHOes" EntityType="Self.DONGHO" />
+    <EntitySet Name="HOADONs" EntityType="Self.HOADON" />
+    <EntitySet Name="KHACHHANGs" EntityType="Self.KHACHHANG" />
+    <EntitySet Name="LOAIDONGHOes" EntityType="Self.LOAIDONGHO" />
+    <EntitySet Name="QUANTRIs" EntityType="Self.QUANTRI" />
+    <EntitySet Name="THUONGHIEUx" EntityType="Self.THUONGHIEU" />
+    <AssociationSet Name="FK_CHATLIEU_DONGHO" Association="Self.FK_CHATLIEU_DONGHO">
+      <End Role="DONGHO" EntitySet="DONGHOes" />
+      <End Role="CHATLIEU" EntitySet="CHATLIEUx" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CHITIETHOADON_DONGHO" Association="Self.FK_CHITIETHOADON_DONGHO">
+      <End Role="DONGHO" EntitySet="DONGHOes" />
+      <End Role="CHITIETHOADON" EntitySet="CHITIETHOADONs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CHITIETHOADON_HOADON" Association="Self.FK_CHITIETHOADON_HOADON">
+      <End Role="HOADON" EntitySet="HOADONs" />
+      <End Role="CHITIETHOADON" EntitySet="CHITIETHOADONs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DONGHO_LOAI" Association="Self.FK_DONGHO_LOAI">
+      <End Role="LOAIDONGHO" EntitySet="LOAIDONGHOes" />
+      <End Role="DONGHO" EntitySet="DONGHOes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DONGHO_THUONGHIEU" Association="Self.FK_DONGHO_THUONGHIEU">
+      <End Role="THUONGHIEU" EntitySet="THUONGHIEUx" />
+      <End Role="DONGHO" EntitySet="DONGHOes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HOADON_KHACHHANG" Association="Self.FK_HOADON_KHACHHANG">
+      <End Role="KHACHHANG" EntitySet="KHACHHANGs" />
+      <End Role="HOADON" EntitySet="HOADONs" />
+    </AssociationSet>
+    <AssociationSet Name="DONGHOYEUTHICH" Association="Self.DONGHOYEUTHICH">
+      <End Role="DONGHO" EntitySet="DONGHOes" />
+      <End Role="KHACHHANG" EntitySet="KHACHHANGs" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

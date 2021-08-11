@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9ca5e183a1b54d169f60fe8274d1b395" Name="Diagram1" ZoomLevel="55">
+        <EntityTypeShape EntityType="QL_CUAHANGDONGHOModel.CHATLIEU" Width="1.5" PointX="5.25" PointY="10.5" />
+        <EntityTypeShape EntityType="QL_CUAHANGDONGHOModel.CHITIETHOADON" Width="1.5" PointX="5.25" PointY="5" />
+        <EntityTypeShape EntityType="QL_CUAHANGDONGHOModel.DONGHO" Width="1.5" PointX="3" PointY="4.375" />
+        <EntityTypeShape EntityType="QL_CUAHANGDONGHOModel.DONGHOYEUTHICH" Width="1.5" PointX="5.25" PointY="2.125" />
+        <EntityTypeShape EntityType="QL_CUAHANGDONGHOModel.HOADON" Width="1.5" PointX="3" PointY="9" />
+        <EntityTypeShape EntityType="QL_CUAHANGDONGHOModel.KHACHHANG" Width="1.5" PointX="3" PointY="0.75" />
+        <EntityTypeShape EntityType="QL_CUAHANGDONGHOModel.LOAIDONGHO" Width="1.5" PointX="0.75" PointY="5.25" />
+        <EntityTypeShape EntityType="QL_CUAHANGDONGHOModel.QUANTRI" Width="1.5" PointX="7.75" PointY="1.25" />
+        <EntityTypeShape EntityType="QL_CUAHANGDONGHOModel.THUONGHIEU" Width="1.5" PointX="0.75" PointY="2.25" />
+        <AssociationConnector Association="QL_CUAHANGDONGHOModel.FK_CHATLIEU_DONGHO" />
+        <AssociationConnector Association="QL_CUAHANGDONGHOModel.FK_CHITIETHOADON_DONGHO" />
+        <AssociationConnector Association="QL_CUAHANGDONGHOModel.FK_CHITIETHOADON_HOADON" />
+        <AssociationConnector Association="QL_CUAHANGDONGHOModel.FK_DONGHO_LOAI" />
+        <AssociationConnector Association="QL_CUAHANGDONGHOModel.FK_DONGHO_THUONGHIEU" />
+        <AssociationConnector Association="QL_CUAHANGDONGHOModel.FK_DONGHOYEUTHICH_DONGHO" />
+        <AssociationConnector Association="QL_CUAHANGDONGHOModel.FK_DONGHOYEUTHICH_KHACHHANG" />
+        <AssociationConnector Association="QL_CUAHANGDONGHOModel.FK_HOADON_KHACHHANG" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

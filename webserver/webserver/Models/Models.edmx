@@ -1,0 +1,602 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="QL_CUAHANGDONGHOModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CHATLIEU">
+          <Key>
+            <PropertyRef Name="IDCHATLIEU" />
+          </Key>
+          <Property Name="IDDONGHO" Type="varchar" MaxLength="30" />
+          <Property Name="IDCHATLIEU" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="SIZEKINH" Type="varchar" MaxLength="20" />
+          <Property Name="LOAIKINH" Type="nvarchar" MaxLength="30" />
+          <Property Name="LOAIDAY" Type="nvarchar" MaxLength="30" />
+          <Property Name="CHATLIEU" Type="nvarchar" MaxLength="30" />
+          <Property Name="MAUTOMATSO" Type="nvarchar" MaxLength="30" />
+          <Property Name="MAUTOVO" Type="nvarchar" MaxLength="30" />
+          <Property Name="MUCCHONGNUOC" Type="varchar" MaxLength="9" />
+        </EntityType>
+        <EntityType Name="CHITIETHOADON">
+          <Key>
+            <PropertyRef Name="IDHOADON" />
+            <PropertyRef Name="IDDONGHO" />
+          </Key>
+          <Property Name="IDHOADON" Type="int" Nullable="false" />
+          <Property Name="IDDONGHO" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="SOLUONG" Type="int" />
+          <Property Name="THANHTIEN" Type="float" />
+          <Property Name="DONGIA" Type="float" />
+        </EntityType>
+        <EntityType Name="DONGHO">
+          <Key>
+            <PropertyRef Name="IDDONGHO" />
+          </Key>
+          <Property Name="IDDONGHO" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="TENDONGHO" Type="nvarchar" MaxLength="50" />
+          <Property Name="GIABAN" Type="float" />
+          <Property Name="XUATSU" Type="nvarchar" MaxLength="50" />
+          <Property Name="GIOITINH" Type="nvarchar" MaxLength="10" />
+          <Property Name="IDLOAI" Type="varchar" MaxLength="10" />
+          <Property Name="IDTHUONGHIEU" Type="varchar" MaxLength="10" />
+          <Property Name="HINH" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="DONGHOYEUTHICH">
+          <Key>
+            <PropertyRef Name="IDDONGHO" />
+            <PropertyRef Name="IDKHACHHANG" />
+          </Key>
+          <Property Name="IDDONGHO" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="IDKHACHHANG" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="NGAYTHEM" Type="date" />
+        </EntityType>
+        <EntityType Name="HOADON">
+          <Key>
+            <PropertyRef Name="IDHOADON" />
+          </Key>
+          <Property Name="IDHOADON" Type="int" Nullable="false" />
+          <Property Name="NGAYLAP" Type="date" />
+          <Property Name="TONGTIEN" Type="float" />
+          <Property Name="IDKHACHHANG" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="KHACHHANG">
+          <Key>
+            <PropertyRef Name="EMAIL" />
+          </Key>
+          <Property Name="EMAIL" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="PASS" Type="varchar" MaxLength="30" />
+          <Property Name="HOTEN" Type="nvarchar" MaxLength="50" />
+          <Property Name="GIOITINH" Type="nvarchar" MaxLength="10" />
+          <Property Name="NAMSINH" Type="int" />
+          <Property Name="SDT" Type="varchar" MaxLength="20" />
+          <Property Name="NOISINH" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="LOAIDONGHO">
+          <Key>
+            <PropertyRef Name="IDLOAI" />
+          </Key>
+          <Property Name="IDLOAI" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="TENLOAI" Type="nvarchar" MaxLength="50" />
+          <Property Name="HINH" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="QUANTRI">
+          <Key>
+            <PropertyRef Name="EMAIL" />
+          </Key>
+          <Property Name="EMAIL" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="PASS" Type="varchar" MaxLength="30" />
+          <Property Name="HOTEN" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="THUONGHIEU">
+          <Key>
+            <PropertyRef Name="IDTHUONGHIEU" />
+          </Key>
+          <Property Name="IDTHUONGHIEU" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="TENTHUONGHIEU" Type="nvarchar" MaxLength="50" />
+          <Property Name="HINH" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <Association Name="FK_CHATLIEU_DONGHO">
+          <End Role="DONGHO" Type="Self.DONGHO" Multiplicity="0..1" />
+          <End Role="CHATLIEU" Type="Self.CHATLIEU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DONGHO">
+              <PropertyRef Name="IDDONGHO" />
+            </Principal>
+            <Dependent Role="CHATLIEU">
+              <PropertyRef Name="IDDONGHO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CHITIETHOADON_DONGHO">
+          <End Role="DONGHO" Type="Self.DONGHO" Multiplicity="1" />
+          <End Role="CHITIETHOADON" Type="Self.CHITIETHOADON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DONGHO">
+              <PropertyRef Name="IDDONGHO" />
+            </Principal>
+            <Dependent Role="CHITIETHOADON">
+              <PropertyRef Name="IDDONGHO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CHITIETHOADON_HOADON">
+          <End Role="HOADON" Type="Self.HOADON" Multiplicity="1" />
+          <End Role="CHITIETHOADON" Type="Self.CHITIETHOADON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HOADON">
+              <PropertyRef Name="IDHOADON" />
+            </Principal>
+            <Dependent Role="CHITIETHOADON">
+              <PropertyRef Name="IDHOADON" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DONGHO_LOAI">
+          <End Role="LOAIDONGHO" Type="Self.LOAIDONGHO" Multiplicity="0..1" />
+          <End Role="DONGHO" Type="Self.DONGHO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOAIDONGHO">
+              <PropertyRef Name="IDLOAI" />
+            </Principal>
+            <Dependent Role="DONGHO">
+              <PropertyRef Name="IDLOAI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DONGHO_THUONGHIEU">
+          <End Role="THUONGHIEU" Type="Self.THUONGHIEU" Multiplicity="0..1" />
+          <End Role="DONGHO" Type="Self.DONGHO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="THUONGHIEU">
+              <PropertyRef Name="IDTHUONGHIEU" />
+            </Principal>
+            <Dependent Role="DONGHO">
+              <PropertyRef Name="IDTHUONGHIEU" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DONGHOYEUTHICH_DONGHO">
+          <End Role="DONGHO" Type="Self.DONGHO" Multiplicity="1" />
+          <End Role="DONGHOYEUTHICH" Type="Self.DONGHOYEUTHICH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DONGHO">
+              <PropertyRef Name="IDDONGHO" />
+            </Principal>
+            <Dependent Role="DONGHOYEUTHICH">
+              <PropertyRef Name="IDDONGHO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DONGHOYEUTHICH_KHACHHANG">
+          <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="1" />
+          <End Role="DONGHOYEUTHICH" Type="Self.DONGHOYEUTHICH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KHACHHANG">
+              <PropertyRef Name="EMAIL" />
+            </Principal>
+            <Dependent Role="DONGHOYEUTHICH">
+              <PropertyRef Name="IDKHACHHANG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HOADON_KHACHHANG">
+          <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="0..1" />
+          <End Role="HOADON" Type="Self.HOADON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KHACHHANG">
+              <PropertyRef Name="EMAIL" />
+            </Principal>
+            <Dependent Role="HOADON">
+              <PropertyRef Name="IDKHACHHANG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QL_CUAHANGDONGHOModelStoreContainer">
+          <EntitySet Name="CHATLIEU" EntityType="Self.CHATLIEU" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CHITIETHOADON" EntityType="Self.CHITIETHOADON" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DONGHO" EntityType="Self.DONGHO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DONGHOYEUTHICH" EntityType="Self.DONGHOYEUTHICH" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HOADON" EntityType="Self.HOADON" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KHACHHANG" EntityType="Self.KHACHHANG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LOAIDONGHO" EntityType="Self.LOAIDONGHO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QUANTRI" EntityType="Self.QUANTRI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="THUONGHIEU" EntityType="Self.THUONGHIEU" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CHATLIEU_DONGHO" Association="Self.FK_CHATLIEU_DONGHO">
+            <End Role="DONGHO" EntitySet="DONGHO" />
+            <End Role="CHATLIEU" EntitySet="CHATLIEU" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CHITIETHOADON_DONGHO" Association="Self.FK_CHITIETHOADON_DONGHO">
+            <End Role="DONGHO" EntitySet="DONGHO" />
+            <End Role="CHITIETHOADON" EntitySet="CHITIETHOADON" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CHITIETHOADON_HOADON" Association="Self.FK_CHITIETHOADON_HOADON">
+            <End Role="HOADON" EntitySet="HOADON" />
+            <End Role="CHITIETHOADON" EntitySet="CHITIETHOADON" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DONGHO_LOAI" Association="Self.FK_DONGHO_LOAI">
+            <End Role="LOAIDONGHO" EntitySet="LOAIDONGHO" />
+            <End Role="DONGHO" EntitySet="DONGHO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DONGHO_THUONGHIEU" Association="Self.FK_DONGHO_THUONGHIEU">
+            <End Role="THUONGHIEU" EntitySet="THUONGHIEU" />
+            <End Role="DONGHO" EntitySet="DONGHO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DONGHOYEUTHICH_DONGHO" Association="Self.FK_DONGHOYEUTHICH_DONGHO">
+            <End Role="DONGHO" EntitySet="DONGHO" />
+            <End Role="DONGHOYEUTHICH" EntitySet="DONGHOYEUTHICH" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DONGHOYEUTHICH_KHACHHANG" Association="Self.FK_DONGHOYEUTHICH_KHACHHANG">
+            <End Role="KHACHHANG" EntitySet="KHACHHANG" />
+            <End Role="DONGHOYEUTHICH" EntitySet="DONGHOYEUTHICH" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HOADON_KHACHHANG" Association="Self.FK_HOADON_KHACHHANG">
+            <End Role="KHACHHANG" EntitySet="KHACHHANG" />
+            <End Role="HOADON" EntitySet="HOADON" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QL_CUAHANGDONGHOModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="QL_CUAHANGDONGHOEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CHATLIEUx" EntityType="QL_CUAHANGDONGHOModel.CHATLIEU" />
+          <EntitySet Name="CHITIETHOADONs" EntityType="QL_CUAHANGDONGHOModel.CHITIETHOADON" />
+          <EntitySet Name="DONGHOes" EntityType="QL_CUAHANGDONGHOModel.DONGHO" />
+          <EntitySet Name="DONGHOYEUTHICHes" EntityType="QL_CUAHANGDONGHOModel.DONGHOYEUTHICH" />
+          <EntitySet Name="HOADONs" EntityType="QL_CUAHANGDONGHOModel.HOADON" />
+          <EntitySet Name="KHACHHANGs" EntityType="QL_CUAHANGDONGHOModel.KHACHHANG" />
+          <EntitySet Name="LOAIDONGHOes" EntityType="QL_CUAHANGDONGHOModel.LOAIDONGHO" />
+          <EntitySet Name="QUANTRIs" EntityType="QL_CUAHANGDONGHOModel.QUANTRI" />
+          <EntitySet Name="THUONGHIEUx" EntityType="QL_CUAHANGDONGHOModel.THUONGHIEU" />
+          <AssociationSet Name="FK_CHATLIEU_DONGHO" Association="QL_CUAHANGDONGHOModel.FK_CHATLIEU_DONGHO">
+            <End Role="DONGHO" EntitySet="DONGHOes" />
+            <End Role="CHATLIEU" EntitySet="CHATLIEUx" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CHITIETHOADON_DONGHO" Association="QL_CUAHANGDONGHOModel.FK_CHITIETHOADON_DONGHO">
+            <End Role="DONGHO" EntitySet="DONGHOes" />
+            <End Role="CHITIETHOADON" EntitySet="CHITIETHOADONs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CHITIETHOADON_HOADON" Association="QL_CUAHANGDONGHOModel.FK_CHITIETHOADON_HOADON">
+            <End Role="HOADON" EntitySet="HOADONs" />
+            <End Role="CHITIETHOADON" EntitySet="CHITIETHOADONs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DONGHO_LOAI" Association="QL_CUAHANGDONGHOModel.FK_DONGHO_LOAI">
+            <End Role="LOAIDONGHO" EntitySet="LOAIDONGHOes" />
+            <End Role="DONGHO" EntitySet="DONGHOes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DONGHO_THUONGHIEU" Association="QL_CUAHANGDONGHOModel.FK_DONGHO_THUONGHIEU">
+            <End Role="THUONGHIEU" EntitySet="THUONGHIEUx" />
+            <End Role="DONGHO" EntitySet="DONGHOes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DONGHOYEUTHICH_DONGHO" Association="QL_CUAHANGDONGHOModel.FK_DONGHOYEUTHICH_DONGHO">
+            <End Role="DONGHO" EntitySet="DONGHOes" />
+            <End Role="DONGHOYEUTHICH" EntitySet="DONGHOYEUTHICHes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DONGHOYEUTHICH_KHACHHANG" Association="QL_CUAHANGDONGHOModel.FK_DONGHOYEUTHICH_KHACHHANG">
+            <End Role="KHACHHANG" EntitySet="KHACHHANGs" />
+            <End Role="DONGHOYEUTHICH" EntitySet="DONGHOYEUTHICHes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HOADON_KHACHHANG" Association="QL_CUAHANGDONGHOModel.FK_HOADON_KHACHHANG">
+            <End Role="KHACHHANG" EntitySet="KHACHHANGs" />
+            <End Role="HOADON" EntitySet="HOADONs" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="CHATLIEU">
+          <Key>
+            <PropertyRef Name="IDCHATLIEU" />
+          </Key>
+          <Property Name="IDDONGHO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="IDCHATLIEU" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="SIZEKINH" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="LOAIKINH" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="LOAIDAY" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="CHATLIEU1" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="MAUTOMATSO" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="MAUTOVO" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="MUCCHONGNUOC" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="CHITIETHOADON">
+          <Key>
+            <PropertyRef Name="IDHOADON" />
+            <PropertyRef Name="IDDONGHO" />
+          </Key>
+          <Property Name="IDHOADON" Type="Int32" Nullable="false" />
+          <Property Name="IDDONGHO" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="SOLUONG" Type="Int32" />
+          <Property Name="THANHTIEN" Type="Double" />
+          <Property Name="DONGIA" Type="Double" />
+        </EntityType>
+        <EntityType Name="DONGHO">
+          <Key>
+            <PropertyRef Name="IDDONGHO" />
+          </Key>
+          <Property Name="IDDONGHO" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="TENDONGHO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GIABAN" Type="Double" />
+          <Property Name="XUATSU" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GIOITINH" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="IDLOAI" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="IDTHUONGHIEU" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="HINH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="DONGHOYEUTHICH">
+          <Key>
+            <PropertyRef Name="IDDONGHO" />
+            <PropertyRef Name="IDKHACHHANG" />
+          </Key>
+          <Property Name="IDDONGHO" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="IDKHACHHANG" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="NGAYTHEM" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="HOADON">
+          <Key>
+            <PropertyRef Name="IDHOADON" />
+          </Key>
+          <Property Name="IDHOADON" Type="Int32" Nullable="false" />
+          <Property Name="NGAYLAP" Type="DateTime" Precision="0" />
+          <Property Name="TONGTIEN" Type="Double" />
+          <Property Name="IDKHACHHANG" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="KHACHHANG">
+          <Key>
+            <PropertyRef Name="EMAIL" />
+          </Key>
+          <Property Name="EMAIL" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="PASS" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="HOTEN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GIOITINH" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="NAMSINH" Type="Int32" />
+          <Property Name="SDT" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="NOISINH" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="LOAIDONGHO">
+          <Key>
+            <PropertyRef Name="IDLOAI" />
+          </Key>
+          <Property Name="IDLOAI" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TENLOAI" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HINH" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="QUANTRI">
+          <Key>
+            <PropertyRef Name="EMAIL" />
+          </Key>
+          <Property Name="EMAIL" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="PASS" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="HOTEN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="THUONGHIEU">
+          <Key>
+            <PropertyRef Name="IDTHUONGHIEU" />
+          </Key>
+          <Property Name="IDTHUONGHIEU" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TENTHUONGHIEU" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HINH" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_CHATLIEU_DONGHO">
+          <End Type="QL_CUAHANGDONGHOModel.DONGHO" Role="DONGHO" Multiplicity="0..1" />
+          <End Type="QL_CUAHANGDONGHOModel.CHATLIEU" Role="CHATLIEU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DONGHO">
+              <PropertyRef Name="IDDONGHO" />
+            </Principal>
+            <Dependent Role="CHATLIEU">
+              <PropertyRef Name="IDDONGHO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CHITIETHOADON_DONGHO">
+          <End Type="QL_CUAHANGDONGHOModel.DONGHO" Role="DONGHO" Multiplicity="1" />
+          <End Type="QL_CUAHANGDONGHOModel.CHITIETHOADON" Role="CHITIETHOADON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DONGHO">
+              <PropertyRef Name="IDDONGHO" />
+            </Principal>
+            <Dependent Role="CHITIETHOADON">
+              <PropertyRef Name="IDDONGHO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CHITIETHOADON_HOADON">
+          <End Type="QL_CUAHANGDONGHOModel.HOADON" Role="HOADON" Multiplicity="1" />
+          <End Type="QL_CUAHANGDONGHOModel.CHITIETHOADON" Role="CHITIETHOADON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HOADON">
+              <PropertyRef Name="IDHOADON" />
+            </Principal>
+            <Dependent Role="CHITIETHOADON">
+              <PropertyRef Name="IDHOADON" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DONGHO_LOAI">
+          <End Type="QL_CUAHANGDONGHOModel.LOAIDONGHO" Role="LOAIDONGHO" Multiplicity="0..1" />
+          <End Type="QL_CUAHANGDONGHOModel.DONGHO" Role="DONGHO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOAIDONGHO">
+              <PropertyRef Name="IDLOAI" />
+            </Principal>
+            <Dependent Role="DONGHO">
+              <PropertyRef Name="IDLOAI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DONGHO_THUONGHIEU">
+          <End Type="QL_CUAHANGDONGHOModel.THUONGHIEU" Role="THUONGHIEU" Multiplicity="0..1" />
+          <End Type="QL_CUAHANGDONGHOModel.DONGHO" Role="DONGHO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="THUONGHIEU">
+              <PropertyRef Name="IDTHUONGHIEU" />
+            </Principal>
+            <Dependent Role="DONGHO">
+              <PropertyRef Name="IDTHUONGHIEU" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DONGHOYEUTHICH_DONGHO">
+          <End Type="QL_CUAHANGDONGHOModel.DONGHO" Role="DONGHO" Multiplicity="1" />
+          <End Type="QL_CUAHANGDONGHOModel.DONGHOYEUTHICH" Role="DONGHOYEUTHICH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DONGHO">
+              <PropertyRef Name="IDDONGHO" />
+            </Principal>
+            <Dependent Role="DONGHOYEUTHICH">
+              <PropertyRef Name="IDDONGHO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DONGHOYEUTHICH_KHACHHANG">
+          <End Type="QL_CUAHANGDONGHOModel.KHACHHANG" Role="KHACHHANG" Multiplicity="1" />
+          <End Type="QL_CUAHANGDONGHOModel.DONGHOYEUTHICH" Role="DONGHOYEUTHICH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KHACHHANG">
+              <PropertyRef Name="EMAIL" />
+            </Principal>
+            <Dependent Role="DONGHOYEUTHICH">
+              <PropertyRef Name="IDKHACHHANG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HOADON_KHACHHANG">
+          <End Type="QL_CUAHANGDONGHOModel.KHACHHANG" Role="KHACHHANG" Multiplicity="0..1" />
+          <End Type="QL_CUAHANGDONGHOModel.HOADON" Role="HOADON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KHACHHANG">
+              <PropertyRef Name="EMAIL" />
+            </Principal>
+            <Dependent Role="HOADON">
+              <PropertyRef Name="IDKHACHHANG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QL_CUAHANGDONGHOModelStoreContainer" CdmEntityContainer="QL_CUAHANGDONGHOEntities1">
+          <EntitySetMapping Name="CHATLIEUx">
+            <EntityTypeMapping TypeName="QL_CUAHANGDONGHOModel.CHATLIEU">
+              <MappingFragment StoreEntitySet="CHATLIEU">
+                <ScalarProperty Name="MUCCHONGNUOC" ColumnName="MUCCHONGNUOC" />
+                <ScalarProperty Name="MAUTOVO" ColumnName="MAUTOVO" />
+                <ScalarProperty Name="MAUTOMATSO" ColumnName="MAUTOMATSO" />
+                <ScalarProperty Name="CHATLIEU1" ColumnName="CHATLIEU" />
+                <ScalarProperty Name="LOAIDAY" ColumnName="LOAIDAY" />
+                <ScalarProperty Name="LOAIKINH" ColumnName="LOAIKINH" />
+                <ScalarProperty Name="SIZEKINH" ColumnName="SIZEKINH" />
+                <ScalarProperty Name="IDCHATLIEU" ColumnName="IDCHATLIEU" />
+                <ScalarProperty Name="IDDONGHO" ColumnName="IDDONGHO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CHITIETHOADONs">
+            <EntityTypeMapping TypeName="QL_CUAHANGDONGHOModel.CHITIETHOADON">
+              <MappingFragment StoreEntitySet="CHITIETHOADON">
+                <ScalarProperty Name="DONGIA" ColumnName="DONGIA" />
+                <ScalarProperty Name="THANHTIEN" ColumnName="THANHTIEN" />
+                <ScalarProperty Name="SOLUONG" ColumnName="SOLUONG" />
+                <ScalarProperty Name="IDDONGHO" ColumnName="IDDONGHO" />
+                <ScalarProperty Name="IDHOADON" ColumnName="IDHOADON" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DONGHOes">
+            <EntityTypeMapping TypeName="QL_CUAHANGDONGHOModel.DONGHO">
+              <MappingFragment StoreEntitySet="DONGHO">
+                <ScalarProperty Name="HINH" ColumnName="HINH" />
+                <ScalarProperty Name="IDTHUONGHIEU" ColumnName="IDTHUONGHIEU" />
+                <ScalarProperty Name="IDLOAI" ColumnName="IDLOAI" />
+                <ScalarProperty Name="GIOITINH" ColumnName="GIOITINH" />
+                <ScalarProperty Name="XUATSU" ColumnName="XUATSU" />
+                <ScalarProperty Name="GIABAN" ColumnName="GIABAN" />
+                <ScalarProperty Name="TENDONGHO" ColumnName="TENDONGHO" />
+                <ScalarProperty Name="IDDONGHO" ColumnName="IDDONGHO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DONGHOYEUTHICHes">
+            <EntityTypeMapping TypeName="QL_CUAHANGDONGHOModel.DONGHOYEUTHICH">
+              <MappingFragment StoreEntitySet="DONGHOYEUTHICH">
+                <ScalarProperty Name="NGAYTHEM" ColumnName="NGAYTHEM" />
+                <ScalarProperty Name="IDKHACHHANG" ColumnName="IDKHACHHANG" />
+                <ScalarProperty Name="IDDONGHO" ColumnName="IDDONGHO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HOADONs">
+            <EntityTypeMapping TypeName="QL_CUAHANGDONGHOModel.HOADON">
+              <MappingFragment StoreEntitySet="HOADON">
+                <ScalarProperty Name="IDKHACHHANG" ColumnName="IDKHACHHANG" />
+                <ScalarProperty Name="TONGTIEN" ColumnName="TONGTIEN" />
+                <ScalarProperty Name="NGAYLAP" ColumnName="NGAYLAP" />
+                <ScalarProperty Name="IDHOADON" ColumnName="IDHOADON" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KHACHHANGs">
+            <EntityTypeMapping TypeName="QL_CUAHANGDONGHOModel.KHACHHANG">
+              <MappingFragment StoreEntitySet="KHACHHANG">
+                <ScalarProperty Name="NOISINH" ColumnName="NOISINH" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+                <ScalarProperty Name="NAMSINH" ColumnName="NAMSINH" />
+                <ScalarProperty Name="GIOITINH" ColumnName="GIOITINH" />
+                <ScalarProperty Name="HOTEN" ColumnName="HOTEN" />
+                <ScalarProperty Name="PASS" ColumnName="PASS" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LOAIDONGHOes">
+            <EntityTypeMapping TypeName="QL_CUAHANGDONGHOModel.LOAIDONGHO">
+              <MappingFragment StoreEntitySet="LOAIDONGHO">
+                <ScalarProperty Name="HINH" ColumnName="HINH" />
+                <ScalarProperty Name="TENLOAI" ColumnName="TENLOAI" />
+                <ScalarProperty Name="IDLOAI" ColumnName="IDLOAI" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QUANTRIs">
+            <EntityTypeMapping TypeName="QL_CUAHANGDONGHOModel.QUANTRI">
+              <MappingFragment StoreEntitySet="QUANTRI">
+                <ScalarProperty Name="HOTEN" ColumnName="HOTEN" />
+                <ScalarProperty Name="PASS" ColumnName="PASS" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="THUONGHIEUx">
+            <EntityTypeMapping TypeName="QL_CUAHANGDONGHOModel.THUONGHIEU">
+              <MappingFragment StoreEntitySet="THUONGHIEU">
+                <ScalarProperty Name="HINH" ColumnName="HINH" />
+                <ScalarProperty Name="TENTHUONGHIEU" ColumnName="TENTHUONGHIEU" />
+                <ScalarProperty Name="IDTHUONGHIEU" ColumnName="IDTHUONGHIEU" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

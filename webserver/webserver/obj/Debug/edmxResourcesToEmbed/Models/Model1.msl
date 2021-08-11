@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="QL_CUAHANGDONGHOModelStoreContainer" CdmEntityContainer="QL_CUAHANGDONGHOEntities">
+    <EntitySetMapping Name="DONGHOes">
+      <EntityTypeMapping TypeName="QL_CUAHANGDONGHOModel.DONGHO">
+        <MappingFragment StoreEntitySet="DONGHO">
+          <ScalarProperty Name="HINH" ColumnName="HINH" />
+          <ScalarProperty Name="IDTHUONGHIEU" ColumnName="IDTHUONGHIEU" />
+          <ScalarProperty Name="IDLOAI" ColumnName="IDLOAI" />
+          <ScalarProperty Name="GIOITINH" ColumnName="GIOITINH" />
+          <ScalarProperty Name="XUATSU" ColumnName="XUATSU" />
+          <ScalarProperty Name="GIABAN" ColumnName="GIABAN" />
+          <ScalarProperty Name="TENDONGHO" ColumnName="TENDONGHO" />
+          <ScalarProperty Name="IDDONGHO" ColumnName="IDDONGHO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CHATLIEUx">
+      <EntityTypeMapping TypeName="QL_CUAHANGDONGHOModel.CHATLIEU">
+        <MappingFragment StoreEntitySet="CHATLIEU">
+          <ScalarProperty Name="MUCCHONGNUOC" ColumnName="MUCCHONGNUOC" />
+          <ScalarProperty Name="MAUTOVO" ColumnName="MAUTOVO" />
+          <ScalarProperty Name="MAUTOMATSO" ColumnName="MAUTOMATSO" />
+          <ScalarProperty Name="CHATLIEU1" ColumnName="CHATLIEU" />
+          <ScalarProperty Name="LOAIDAY" ColumnName="LOAIDAY" />
+          <ScalarProperty Name="LOAIKINH" ColumnName="LOAIKINH" />
+          <ScalarProperty Name="SIZEKINH" ColumnName="SIZEKINH" />
+          <ScalarProperty Name="IDCHATLIEU" ColumnName="IDCHATLIEU" />
+          <ScalarProperty Name="IDDONGHO" ColumnName="IDDONGHO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CHITIETHOADONs">
+      <EntityTypeMapping TypeName="QL_CUAHANGDONGHOModel.CHITIETHOADON">
+        <MappingFragment StoreEntitySet="CHITIETHOADON">
+          <ScalarProperty Name="DONGIA" ColumnName="DONGIA" />
+          <ScalarProperty Name="THANHTIEN" ColumnName="THANHTIEN" />
+          <ScalarProperty Name="SOLUONG" ColumnName="SOLUONG" />
+          <ScalarProperty Name="IDDONGHO" ColumnName="IDDONGHO" />
+          <ScalarProperty Name="IDHOADON" ColumnName="IDHOADON" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HOADONs">
+      <EntityTypeMapping TypeName="QL_CUAHANGDONGHOModel.HOADON">
+        <MappingFragment StoreEntitySet="HOADON">
+          <ScalarProperty Name="IDKHACHHANG" ColumnName="IDKHACHHANG" />
+          <ScalarProperty Name="TONGTIEN" ColumnName="TONGTIEN" />
+          <ScalarProperty Name="NGAYLAP" ColumnName="NGAYLAP" />
+          <ScalarProperty Name="IDHOADON" ColumnName="IDHOADON" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KHACHHANGs">
+      <EntityTypeMapping TypeName="QL_CUAHANGDONGHOModel.KHACHHANG">
+        <MappingFragment StoreEntitySet="KHACHHANG">
+          <ScalarProperty Name="NOISINH" ColumnName="NOISINH" />
+          <ScalarProperty Name="SDT" ColumnName="SDT" />
+          <ScalarProperty Name="NAMSINH" ColumnName="NAMSINH" />
+          <ScalarProperty Name="GIOITINH" ColumnName="GIOITINH" />
+          <ScalarProperty Name="HOTEN" ColumnName="HOTEN" />
+          <ScalarProperty Name="PASS" ColumnName="PASS" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LOAIDONGHOes">
+      <EntityTypeMapping TypeName="QL_CUAHANGDONGHOModel.LOAIDONGHO">
+        <MappingFragment StoreEntitySet="LOAIDONGHO">
+          <ScalarProperty Name="HINH" ColumnName="HINH" />
+          <ScalarProperty Name="TENLOAI" ColumnName="TENLOAI" />
+          <ScalarProperty Name="IDLOAI" ColumnName="IDLOAI" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="QUANTRIs">
+      <EntityTypeMapping TypeName="QL_CUAHANGDONGHOModel.QUANTRI">
+        <MappingFragment StoreEntitySet="QUANTRI">
+          <ScalarProperty Name="HOTEN" ColumnName="HOTEN" />
+          <ScalarProperty Name="PASS" ColumnName="PASS" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="THUONGHIEUx">
+      <EntityTypeMapping TypeName="QL_CUAHANGDONGHOModel.THUONGHIEU">
+        <MappingFragment StoreEntitySet="THUONGHIEU">
+          <ScalarProperty Name="HINH" ColumnName="HINH" />
+          <ScalarProperty Name="TENTHUONGHIEU" ColumnName="TENTHUONGHIEU" />
+          <ScalarProperty Name="IDTHUONGHIEU" ColumnName="IDTHUONGHIEU" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="DONGHOYEUTHICH" TypeName="QL_CUAHANGDONGHOModel.DONGHOYEUTHICH" StoreEntitySet="DONGHOYEUTHICH">
+      <EndProperty Name="KHACHHANG">
+        <ScalarProperty Name="EMAIL" ColumnName="IDKHACHHANG" />
+      </EndProperty>
+      <EndProperty Name="DONGHO">
+        <ScalarProperty Name="IDDONGHO" ColumnName="IDDONGHO" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>
